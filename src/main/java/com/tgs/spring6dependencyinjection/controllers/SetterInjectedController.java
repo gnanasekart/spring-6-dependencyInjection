@@ -2,6 +2,7 @@ package com.tgs.spring6dependencyinjection.controllers;
 
 import com.tgs.spring6dependencyinjection.services.GreetingService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 //Different way of Dependency Injection without Spring
 
@@ -12,6 +13,7 @@ public class SetterInjectedController {
     private GreetingService greetingService;
 
     @Autowired
+    @Qualifier("setterGreetingBean")
     public void setGreetingService(GreetingService greetingService) {
         System.out.println("Setting greeting service");
         this.greetingService = greetingService;
