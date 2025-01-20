@@ -8,8 +8,8 @@ import org.springframework.stereotype.Component;
 public class Myi18NController {
 
     private final GreetingService greetingService;
-
-    public Myi18NController(@Qualifier("i18nService") GreetingService greetingService) {
+    //@Qualifier("i18nService")
+    public Myi18NController( GreetingService greetingService) {
         this.greetingService = greetingService;
     }
 
