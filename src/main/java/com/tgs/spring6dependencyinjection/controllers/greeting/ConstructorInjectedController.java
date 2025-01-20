@@ -1,9 +1,7 @@
-package com.tgs.spring6dependencyinjection.controllers;
+package com.tgs.spring6dependencyinjection.controllers.greeting;
 
-import com.tgs.spring6dependencyinjection.services.GreetingService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.tgs.spring6dependencyinjection.services.greeting.GreetingService;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 //Different way of Dependency Injection without Spring
 

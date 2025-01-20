@@ -1,6 +1,6 @@
 package com.tgs.spring6dependencyinjection;
 
-import com.tgs.spring6dependencyinjection.controllers.MyController;
+import com.tgs.spring6dependencyinjection.controllers.greeting.MyController;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;

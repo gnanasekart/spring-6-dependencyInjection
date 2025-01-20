@@ -1,6 +1,6 @@
-package com.tgs.spring6dependencyinjection.services.i18n;
+package com.tgs.spring6dependencyinjection.services.greeting.i18n;
 
-import com.tgs.spring6dependencyinjection.services.GreetingService;
+import com.tgs.spring6dependencyinjection.services.greeting.GreetingService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 

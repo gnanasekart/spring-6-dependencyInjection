@@ -1,4 +1,4 @@
-package com.tgs.spring6dependencyinjection.services;
+package com.tgs.spring6dependencyinjection.services.greeting;
 
 //Without DependencyInjection
 public interface GreetingService {

@@ -1,4 +1,4 @@
-package com.tgs.spring6dependencyinjection.services;
+package com.tgs.spring6dependencyinjection.services.greeting;
 
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;

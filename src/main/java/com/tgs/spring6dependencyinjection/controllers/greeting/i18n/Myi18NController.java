@@ -1,6 +1,6 @@
-package com.tgs.spring6dependencyinjection.controllers.i18n;
+package com.tgs.spring6dependencyinjection.controllers.greeting.i18n;
 
-import com.tgs.spring6dependencyinjection.services.GreetingService;
+import com.tgs.spring6dependencyinjection.services.greeting.GreetingService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 

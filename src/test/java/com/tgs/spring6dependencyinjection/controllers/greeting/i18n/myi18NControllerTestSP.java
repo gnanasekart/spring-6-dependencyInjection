@@ -1,5 +1,6 @@
-package com.tgs.spring6dependencyinjection.controllers.i18n;
+package com.tgs.spring6dependencyinjection.controllers.greeting.i18n;
 
+import com.tgs.spring6dependencyinjection.controllers.greeting.i18n.Myi18NController;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
