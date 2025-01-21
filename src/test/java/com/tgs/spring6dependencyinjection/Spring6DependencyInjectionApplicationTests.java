@@ -25,9 +25,4 @@ class Spring6DependencyInjectionApplicationTests {
     void testDependencyInjectionByGettingControllerViaAutowired() {
         myController.satHello();
     }
-
-    @Test
-    void contextLoads() {
-    }
-
 }
