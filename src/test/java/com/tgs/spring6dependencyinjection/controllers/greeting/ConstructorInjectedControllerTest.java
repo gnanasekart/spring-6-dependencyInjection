@@ -1,5 +1,6 @@
 package com.tgs.spring6dependencyinjection.controllers.greeting;
 
+import com.tgs.spring6dependencyinjection.session1.controllers.greeting.ConstructorInjectedController;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
