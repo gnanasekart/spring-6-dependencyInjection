@@ -1,0 +1,91 @@
+MyConfiguration file
+This file contains Bean definitions and configuration settings for a Spring Boot application.
+
+
+## Bean Annotations
+- @Configuration: Indicates that the class can be used by the Spring IoC container as a source of bean definitions.
+- @Bean: Indicates that a method produces a bean to be managed by the Spring container.
+    - Bean name can be specified using the name attribute, else method name is used as the bean name.
+- @ComponentScan: Configures component scanning directives for use with @Configuration classes.
+- @Scope: Specifies the scope of a bean (singleton, prototype, request, session, etc.).
+    - Default scope is singleton.
+    - Singleton: A single instance/Object per Spring IoC container is created and used in other places.
+    - Prototype: A new instance/Object each time the bean is requested.
+    - Request: A single instance per HTTP request (web applications).
+    - Session: A single instance per HTTP session (web applications).
+
+Exception :-
+1). org.springframework.beans.factory.NoUniqueBeanDefinitionException:
+        No qualifying bean of type 'org.javaBasedConfiguration.Writer' available:
+        expected single matching bean but found 2: pen,pencil
+
+    - This exception occurs when there are multiple beans of the same type and Spring cannot determine which one to inject.
+    - To resolve this, you can use @Qualifier annotation to specify which bean to inject. --> First Priority is Qualifier
+    @Qualifier("beanName")
+    - Alternatively, you can mark one of the beans as @Primary to indicate that it should be the default choice. --> Second Priority is Primary
+
+
+Stereotype Annotations
+
+@Component: Generic stereotype for any Spring-managed component.
+@ComponentScan(basePackages = "com.example.package"): Specifies the packages to scan for annotated components.
+@Autowired: Marks a constructor, field, setter method, or config method to be autowired by Spring's dependency injection facilities.
+@Qualifier("beanName"): Specifies which bean to inject when multiple candidates are available.
+@Primary: Indicates that a bean should be given preference when multiple candidates are qualified to autowire a single-valued dependency.
+
+
+Spring Boot - Convention over Configuration
+
+Dependency Injection
+- Constructor Injection:
+    @Autowired
+    public Student(Pen pen) {
+        System.out.println("Constructor Injection called");
+        this.pen = pen;
+    }
+
+- Setter Injection:
+    @Autowired
+    public void setPen(Pen pen) {//Setter Injection
+        System.out.println("Setter Injection called");
+        this.pen = pen;
+    }
+
+- Field Injection:
+    @Autowired
+    private Pen pen;//Field Injection
+
+Autowired
+
+
+Loose Coupling
+- @Primary: Marks a bean as the primary candidate for autowiring when multiple beans of the same type are present.
+@Component
+@Primary
+public class Pen implements Writer
+{
+    @Override
+    public void write() {
+        System.out.println("Writing with Pen");
+    }
+}
+
+- @Qualifier: Specifies which bean to inject when multiple candidates are available.
+    @Autowired
+    @Qualifier("pencil")
+    private Writer writer;
+
+To avoid tight coupling between classes, we use interfaces.
+Once after implementing the interface method in one class. that particular class denoted with @Component annotation.
+Now, in another class, we can use that interface as a reference data type and use @Autowired to inject the implementation class object.
+
+-------------------------------------
+
+REST API
+
+Client-Server Architecture
+
+Server consist of
+- Controller Layer: Handles HTTP requests and responses.
+- Service Layer: Contains business logic.
+- Repository Layer: Manages data access and persistence.
