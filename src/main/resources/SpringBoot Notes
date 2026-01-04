@@ -80,6 +80,28 @@ Once after implementing the interface method in one class. that particular class
 Now, in another class, we can use that interface as a reference data type and use @Autowired to inject the implementation class object.
 
 -------------------------------------
+Lombok Annotations
+
+- @Getter: Generates getter methods for all fields.
+- @Setter: Generates setter methods for all fields.
+- @ToString: Generates a toString() method.
+- @NoArgsConstructor: Generates a no-argument constructor.
+- @AllArgsConstructor: Generates a constructor with 1 parameter for each field in the class.
+- @Data: A shortcut for @Getter, @Setter, @ToString, @Equals
+- @Builder: Implements the builder pattern for the class.
+- @Slf4j: Generates a logger field in the class.
+- @RequiredArgsConstructor: Generates a constructor with required arguments (final fields and fields marked with @NonNull).
+- @NonNull: Marks a field as non-null, generating null checks in constructors and setters.
+- @Value: Marks a field as final and generates a constructor for it.
+- @SneakyThrows: Allows throwing checked exceptions without declaring them in the method signature.
+- @Cleanup: Automatically closes resources after use.
+- @Log: Generates a java.util.logging.Logger field in the class.
+- @Synchronized: Generates synchronized methods for thread safety.
+- @EqualsAndHashCode: Generates equals() and hashCode() methods.
+- @FieldDefaults: Sets default access level and mutability for fields in the class.
+- @chain: Generates chainable setter methods.
+
+-------------------------------------
 
 REST API
 
@@ -87,5 +109,79 @@ Client-Server Architecture
 
 Server consist of
 - Controller Layer: Handles HTTP requests and responses.
+    @RestController: Combines @Controller and @ResponseBody, indicating that the class handles RESTful web services.
+
 - Service Layer: Contains business logic.
+    @Service: Indicates that the class holds business logic.
+
 - Repository Layer: Manages data access and persistence.
+    @Repository: Indicates that the class is a Data Access Object (DAO) that interacts with the database.
+
+
+@GetMapping: Maps HTTP GET requests to handler methods.
+@PostMapping: Maps HTTP POST requests to handler methods.
+@PutMapping: Maps HTTP PUT requests to handler methods.
+@DeleteMapping: Maps HTTP DELETE requests to handler methods.
+@PathVariable: Binds a method parameter to a URI template variable.
+@RequestParam: Binds a method parameter to a query parameter in the URL.
+@RequestBody: Binds the HTTP request body to a method parameter.
+
+
+----------------------------------------
+
+JPA (Java Persistence API)
+Hibernate - Object Relational Mapping (ORM) framework for managing relational data in Java applications.
+
+JDBC (Java Database Connectivity)
+7 steps to connect to the database using JDBC
+1. Load the JDBC Driver
+2. Establish a Connection
+3. Create a Statement
+4. Execute a Query
+5. Process the ResultSet
+6. Close the Resources
+7. Handle Exceptions
+
+To overcome the boilerplate code in JDBC, we use Data JPA with Hibernate.
+
+Repository (Interface) extends JpaRepository<EntityClass, PrimaryKeyType>
+- JpaRepository provides CRUD operations and pagination/sorting capabilities.
+
+
+ORM (Object Relational Mapping)
+- It is a technique that bridges the gap between the object-oriented Java code and the relational database.
+- It allows developers to interact with the database using Java objects (called "entities") instead of writing raw SQL queries,
+- which reduces boilerplate code and simplifies data persistence.
+
+Other ORM tools in the market are:
+1. Hibernate: The most popular and widely used ORM framework for Java applications. It is easy to integrate with Spring and Spring boot.
+2. EclipseLink: An open-source ORM framework that is the reference implementation of JPA.
+3. MyBatis: A persistence framework that offers SQL mapping and supports custom SQL queries.
+4. SQLAlchemy: A popular ORM framework for Python applications.
+5. Entity Framework: An ORM framework for .NET applications.
+
+These all ORM tools by default follow the principle of JPA
+
+### Key Components in Spring Boot ORM
+
+Spring Boot simplifies the integration of ORM by providing auto-configuration and starter dependencies,
+primarily using the Java Persistence API (JPA) specification and Hibernate as the default implementation.
+1. JPA (Java Persistence API): This is a Java specification that defines a set of standard rules and interfaces for persistence. It is an API, not an implementation itself.
+2. Hibernate: This is the most popular, full-featured, and default ORM framework that implements the JPA specifications in Spring Boot applications.
+3. Spring Data JPA: This is a Spring framework module that adds an extra layer of abstraction on top of the JPA provider (Hibernate).
+It significantly reduces the amount of code needed for data access by providing repository interfaces for common CRUD (Create, Read, Update, Delete) operations,
+allowing developers to define queries through simple method names.
+
+Example:-
+Before using JPA, we use to write Student class with following fields
+public class StudentCRUD {
+    private int rollNo;
+    private String name;
+    private String technology;
+}
+
+
+Once after introducing JPA,
+It is automatically create a Student table in the database with the fields.
+Here the list of students details are stored as records in the Student table as Rows and Columns.
+we need to annotate the Student class with @Entity and other relevant annotations to map it to a database table.

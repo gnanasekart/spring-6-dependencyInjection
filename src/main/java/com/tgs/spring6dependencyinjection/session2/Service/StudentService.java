@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.OptionalInt;
-import java.util.concurrent.atomic.AtomicReference;
 
 @Service
 public class StudentService {
@@ -90,7 +89,7 @@ public class StudentService {
         OptionalInt found = java.util.stream.IntStream.range(0, students.size())
                 .filter(i -> students.get(i).getRollNo() == rno)
                 .findFirst();
-        if (found.isPresent()) {
+         if (found.isPresent()) {
             students.remove(found.getAsInt());
             message = "Student deleted successfully.";
         } else {

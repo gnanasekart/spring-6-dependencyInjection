@@ -1,0 +1,20 @@
+1. Auto Increment missing in MySQL
+
+Get the full path
+Get-ChildItem 'C:\Program Files\MySQL' -Recurse -Filter mysql.exe -ErrorAction SilentlyContinue | Select-Object FullName;
+Get-ChildItem 'C:\Program Files (x86)\MySQL' -Recurse -Filter mysql.exe -ErrorAction SilentlyContinue | Select-Object FullName
+
+Accessing the Student table to check the current state
+ & 'C:\Program Files\MySQL\MySQL Server 8.0\bin\mysql.exe' -u gst -pAdmin@123 -D jpademo -e "SHOW CREATE TABLE student\G;
+ SELECT COUNT(*) AS cnt_zero FROM student WHERE rno = 0;
+ SELECT IFNULL(MAX(rno),0) AS max_rno FROM student;
+ SELECT rno, COUNT(*) AS cnt FROM student GROUP BY rno HAVING cnt > 1;"
+
+
+Fixing the Auto Increment issue by creating a backup, modifying the table, and verifying the changes
+& 'C:\Program Files\MySQL\MySQL Server 8.0\bin\mysql.exe' -u gst -pAdmin@123 -D jpademo -e "DROP TABLE IF EXISTS student_backup;
+CREATE TABLE student_backup AS SELECT * FROM student;
+ALTER TABLE student MODIFY COLUMN rno INT NOT NULL AUTO_INCREMENT;
+SHOW CREATE TABLE student\G;
+INSERT INTO student (name,gender,technology) VALUES ('IntegrationTest','X','Java');
+SELECT * FROM student ORDER BY rno DESC LIMIT 1;"
