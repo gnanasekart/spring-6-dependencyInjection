@@ -18,15 +18,24 @@ public class StudentController {
         return studentService.getAllStudents();
     }
 
-    @GetMapping("student/{rno}")
+    @GetMapping("students/{rno}")
     public StudentCRUD getStudentByRno(@PathVariable("rno") int rno) {
         return studentService.getStudentByRno(rno);
     }
 
     @PostMapping("student")
     public String addStudent(@RequestBody StudentCRUD student) {
-        studentService.addStudent(student);
-        return "Student added successfully";
+        return studentService.addStudent(student);
+    }
+
+    @PutMapping("student")
+    public String updateStudent(@RequestBody StudentCRUD student) {
+        return studentService.updateStudent(student);
+    }
+
+    @DeleteMapping("student/{rno}")
+    public String deleteStudent(@PathVariable("rno") int rno) {
+        return studentService.deleteStudent(rno);
     }
 
 
