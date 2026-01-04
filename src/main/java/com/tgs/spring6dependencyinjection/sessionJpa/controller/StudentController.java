@@ -3,6 +3,7 @@ package com.tgs.spring6dependencyinjection.sessionJpa.controller;
 import com.tgs.spring6dependencyinjection.sessionJpa.model.Student;
 import com.tgs.spring6dependencyinjection.sessionJpa.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,6 +22,17 @@ public class StudentController {
     @GetMapping("/students/{rno}")
     public  Student getStudent(@PathVariable("rno") int rno) {
         return studentService.getStudentByRno(rno);
+    }
+
+    @GetMapping("/students/technology/{tech}")
+    public List<Student> getStudentsByTechnology(@PathVariable("tech") String technology) {
+        return studentService.getStudentsByTechnology(technology);
+    }
+
+    @PostMapping("/students/filter")
+    public List<Student> getStudentByGenderAndTechnology(@Param("gender") String gender,
+                                                         @Param("technology") String technology) {
+        return studentService.getStudentsByGenderAndTechnology(gender, technology);
     }
 
     @PostMapping("/students")

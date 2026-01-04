@@ -185,3 +185,9 @@ Once after introducing JPA,
 It is automatically create a Student table in the database with the fields.
 Here the list of students details are stored as records in the Student table as Rows and Columns.
 we need to annotate the Student class with @Entity and other relevant annotations to map it to a database table.
+
+
+By Extends JPA Repository, we can perform CRUD operations without writing any boilerplate code.
+Declare methods in the Repository interface with specific naming conventions to perform various queries.
+For example, to find a student by name, we can define a method like findByName(String name) in the Repository interface.
+Alternatively if we want to write custom queries, we can use native @Query annotation in the Repository interface methods.

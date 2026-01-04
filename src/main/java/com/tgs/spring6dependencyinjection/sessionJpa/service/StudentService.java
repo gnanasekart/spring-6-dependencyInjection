@@ -36,4 +36,12 @@ public class StudentService {
     public void deleteAllStudents() {
         studentRepo.deleteAll();
     }
+
+    public List<Student> getStudentsByTechnology(String technology) {
+            return studentRepo.findByTechnology(technology);
+    }
+
+    public List<Student> getStudentsByGenderAndTechnology(String gender, String technology) {
+        return studentRepo.findByGenderAndTechnology(gender, technology);
+    }
 }
