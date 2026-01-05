@@ -4,11 +4,14 @@ import com.tgs.spring6dependencyinjection.sessionJpa.model.Student;
 import com.tgs.spring6dependencyinjection.sessionJpa.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:5500")
 public class StudentController {
 
     @Autowired
@@ -20,8 +23,12 @@ public class StudentController {
     }
 
     @GetMapping("/students/{rno}")
-    public  Student getStudent(@PathVariable("rno") int rno) {
-        return studentService.getStudentByRno(rno);
+    public  ResponseEntity<Student> getStudent(@PathVariable("rno") int rno) {
+        Student student = studentService.getStudentByRno(rno);
+        if (student == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(student, HttpStatus.OK);
     }
 
     @GetMapping("/students/technology/{tech}")
@@ -36,12 +43,30 @@ public class StudentController {
     }
 
     @PostMapping("/students")
-    public Student createStudent(@RequestBody CreateStudentDTO dto) {
+    public ResponseEntity<String> createStudent(@RequestBody CreateStudentDTO dto) {
         Student student = new Student();
         student.setName(dto.getName());
         student.setGender(dto.getGender());
         student.setTechnology(dto.getTechnology());
-        return studentService.addStudent(student);
+        studentService.addStudent(student);
+        return new ResponseEntity<>("Student created successfully", HttpStatus.CREATED);
+    }
+
+    @PostMapping("/add/student")
+    public ResponseEntity<String> addStudentWithRno(@RequestParam("rno") Integer rno,
+                           @RequestParam("name") String name,
+                           @RequestParam("gender") String gender,
+                           @RequestParam("technology") String technology){
+        studentService.addStudent(rno, name, gender, technology);
+        return new ResponseEntity<>("Student added successfully", HttpStatus.CREATED);
+    }
+
+    @PostMapping("/add/student/auto")
+    public ResponseEntity<String> addStudentAutoRno(@RequestParam("name") String name,
+                           @RequestParam("gender") String gender,
+                           @RequestParam("technology") String technology){
+        studentService.addStudent(name, gender, technology);
+        return new ResponseEntity<>("Student added successfully", HttpStatus.CREATED);
     }
 
     @PutMapping("students")

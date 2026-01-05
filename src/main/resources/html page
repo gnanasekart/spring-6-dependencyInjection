@@ -1,0 +1,37 @@
+index.html
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    <h2>GST</h2><br>
+    <button onclick="getStudents()">Show Students</button><br>
+    <a href="register.html"> register</a>
+
+
+    <script>
+        fetch("http://localhost:8080/students")  //API End point
+        .then(response => response.json()) //Json Conversion
+        .then(data => console.log(data)); //Logging the data
+    </script>
+</body>
+</html>
+
+register.html
+<html>
+    <body>
+        <form action="http://localhost:8080/add/student" method="post">
+            <label for="rno">Enter roll no:</label>
+            <input name="rno" type="number"><br>
+
+            <label for="name">Enter name:  </label>
+            <input name="name" type="text"><br>
+
+            <label for="gender">Enter gender:</label>
+            <input name="gender" type="text"><br>
+
+            <label for="tech">Enter technology:</label>
+            <input name="technology" type="text"> <br>
+
+            <button type="submit">submit</button>
+        </form>
+    </body>
+</html>
